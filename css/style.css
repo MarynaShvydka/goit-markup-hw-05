@@ -19,6 +19,25 @@
   --color-navigation: #4d5ae5;
   --FFF-background: #ffffff;
 }
+/*Animation*/
+@keyframes transform {
+  0% {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes scale {
+  from {
+    transform: scale(0.5);
+  }
+  to {
+    transform: 1;
+  }
+}
 html {
   box-sizing: border-box;
 }
@@ -175,6 +194,7 @@ body {
   letter-spacing: 0.02em;
   color: var(--navyblue-txt-cl);
   /*Content*/
+
   transition-property: color;
   transition-duration: 250ms;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -188,10 +208,13 @@ body {
   height: 4px;
   background: #404bbf;
   border-radius: 2px;
+  visibility: hidden;
 }
 .header-link:hover,
+.header-link.current:hover:after,
 .header-link:focus {
   color: var(--ocean-txt-cl);
+  visibility: visible;
 }
 
 /*===========Address=============*/
@@ -432,7 +455,7 @@ address {
   font-family: var(--main-font-roboto);
   font-weight: 400;
   font-size: 16px;
-  line-height: 2calc (24 / 16);
+  line-height: calc(24 / 16);
   letter-spacing: 0.02em;
   color: #f4f4fd;
   position: absolute;
@@ -443,20 +466,23 @@ address {
   height: 100%;
   width: 100%;
   padding: 40px 32px 0px 32px;
-  background: #4d5ae5;
+  background-color: #4d5ae5;
+  background-blend-mode: soft-light;
+  mix-blend-mode: normal;
 }
 .portfolio-link:hover .overlay {
-  transform: translate(0);
-  transition-property: color;
-  transition-duration: 250ms;
-  transition-delay: 0s;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translate(0, 0);
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .portfolio-link:hover,
 .portfolio-link:focus,
 .portfolio-link:active {
   box-shadow: 0px 1px 6px rgba(46, 47, 66, 0.08), 0px 1px 1px rgba(46, 47, 66, 0.16),
     0px 2px 1px rgba(46, 47, 66, 0.08);
+  transition-duration: 250ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-delay: 0s;
+  transition-property: color;
 }
 .row-image {
   min-width: 360px;
@@ -563,4 +589,61 @@ footer {
 .footer-link:hover,
 .footer-link:focus {
   background-color: rgba(49, 208, 170, 1);
+}
+
+/* Modal windows*/
+.backdrope {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(46, 47, 66, 0.4);
+}
+.backdrope.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 408px;
+  height: 576px;
+  background-color: #fcfcfc;
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 1px 3px rgba(0, 0, 0, 0.12),
+    0px 2px 1px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    visibility 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.modal-button {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #e7e9fc;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    visibility 250ms cubic-bezier(0.4, 0, 0.2, 1), background 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.drope-icons {
+  fill: #000000;
+  transition: background 250ms cubic-bezier(0.4, 0, 0.2, 1), fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.modal-button:hover,
+.drope-icons:hover,
+.modal-button:focus,
+.drope-icons:focus {
+  background-color: #404bbf;
+  fill: #e7e9fc;
+  border-color: transparent;
 }

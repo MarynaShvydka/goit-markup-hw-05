@@ -61,7 +61,7 @@
       <section class="hero section">
         <div class="container">
           <h1 class="hero-slogan">Effective Solutions for Your Business</h1>
-          <button class="hero-btn" type="button">Order Service</button>
+          <button class="hero-btn" type="button" data-modal-open>Order Service</button>
         </div>
       </section>
       <!--Our benefits-->
@@ -418,9 +418,13 @@
         </div>
       </footer>
     </main>
-    <div class="backdrope">
-      <div class="">
-        <button></button>
+    <div class="backdrope is-hidden" data-modal>
+      <div class="modal">
+        <button type="button" class="modal-button" data-modal-close>
+          <svg class="drope-icons" width="8" height="8">
+            <use href="./images/symbol-defs.svg#icon-close-black-18dp"></use>
+          </svg>
+        </button>
       </div>
     </div>
     <!-- Modal JS-->
