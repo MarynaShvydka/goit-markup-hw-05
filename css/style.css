@@ -468,7 +468,7 @@ address {
 .portfolio-link {
   display: block;
   box-shadow: 0px 1px 6px rgb(46 47 66 / 8%);
-  transition: box-shadow 500ms linear;
+  transition: box-shadow 500ms;
 }
 .portfolio-link:hover,
 .portfolio-link:focus {
